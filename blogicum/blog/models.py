@@ -1,6 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+from .managers import PostManager
 from core.models import PublishedAndCreatedModel
 
 User = get_user_model()
@@ -72,6 +74,8 @@ class Post(PublishedAndCreatedModel):
         null=True,
         verbose_name='Категория'
     )
+    objects = models.Manager()
+    published = PostManager()
 
     class Meta:
         verbose_name = 'публикация'
